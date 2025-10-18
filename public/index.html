@@ -10,7 +10,13 @@
     <input type="text" id="message" placeholder="メッセージを入力" required />
     <button type="submit">送信</button>
   </form>
+<form id="form">
+  <input type="text" id="userid" placeholder="メンションするユーザーID" required />
+  <input type="text" id="message" placeholder="メッセージ" required />
+  <button type="submit">送信</button>
+</form>
 
+  
   <!-- ✅ JSは必ず body の下に -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
