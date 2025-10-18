@@ -3,7 +3,7 @@ export default async function handler(req, res) {
 
   const { message } = req.body;
 
-  const webhook = 'https://discord.com/api/webhooks/ここにあなたのWebhookURLを貼る';
+  const webhook = 'https://discord.com/api/webhooks/1428992536894115900/ILE6g11bzss-6wVSmfvq5G2sCYDbugkNUwoDIn5ogMr352dX7zEBuNO_YYRwlYW1XF-w';
 
   const discordRes = await fetch(webhook, {
     method: 'POST',
