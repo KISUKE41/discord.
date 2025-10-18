@@ -24,10 +24,12 @@ form.addEventListener('submit', async (e) => {
   const userId = document.getElementById('userid').value;
   const messageText = document.getElementById('message').value;
 
-  const message =
-    ｛
-     allowed_mentions:`<@${userId}> ${messageText}`;
-  ｝
+  const message = {
+      content: `<@${userId}> ${message}`,
+      allowed_mentions: {
+        users: [userId]
+      }
+    };
 
   const res = await fetch('/api/send', {
     method: 'POST',
