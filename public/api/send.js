@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   }
   try {
     const { message } = req.body;
-    const webhook = 'https://discord.com/api/webhooks/…';
+    const webhook = 'https://discord.com/api/webhooks/1428998913116868761/0jR_DqG2KFKV7Si6AqxKYd57qegm2B9h4QbZj0DBeuj_tPEIoT0wiGQy57jzuFcIKhcZ';
     const discordRes = await fetch(webhook, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
