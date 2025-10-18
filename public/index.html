@@ -18,28 +18,23 @@
 
   
   <!-- ✅ JSは必ず body の下に -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const form = document.getElementById('form');
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
 
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault(); // ← これが無いとmethod=GETになります
+  const userId = document.getElementById('userid').value;
+  const messageText = document.getElementById('message').value;
 
-        const message = document.getElementById('message').value;
+  const message = `<@${userId}> ${messageText}`;
 
-        const res = await fetch('/api/send', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message }),
-        });
+  const res = await fetch('/api/send', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message }),
+  });
 
-        if (res.ok) {
-          alert('送信成功！');
-        } else {
-          alert('送信失敗…');
-        }
-      });
-    });
-  </script>
-</body>
-</html>
+  if (res.ok) {
+    alert('送信成功！');
+  } else {
+    alert('送信失敗…');
+  }
+});
