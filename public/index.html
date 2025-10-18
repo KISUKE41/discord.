@@ -24,12 +24,7 @@ form.addEventListener('submit', async (e) => {
   const userId = document.getElementById('userid').value;
   const messageText = document.getElementById('message').value;
 
-  const message = {
-      content: `<@${userId}> ${message}`,
-      allowed_mentions: {
-        users: [userId]
-      }
-    };
+  const message = `<@${userId}> ${message}`;
 
   const res = await fetch('/api/send', {
     method: 'POST',
@@ -37,15 +32,12 @@ form.addEventListener('submit', async (e) => {
     body: JSON.stringify({ message }),
   });
 
-   content: message,
-    allowed_mentions: {
-      users: [userId] 
-  
   if (res.ok) {
     alert('送信成功！');
   } else {
     alert('送信失敗…');
   }
 });
+
 
 </script>
