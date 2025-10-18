@@ -1,32 +1,38 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>Discord通知フォーム</title>
+  <meta charset="UTF-8" />
+  <title>Discord 通知フォーム</title>
 </head>
 <body>
   <h1>Discordにメッセージ送信</h1>
   <form id="form">
-    <input type="text" id="message" placeholder="メッセージを入力" required>
+    <input type="text" id="message" placeholder="メッセージを入力" required />
     <button type="submit">送信</button>
   </form>
 
+  <!-- ✅ JSは必ず body の下に -->
   <script>
-    document.getElementById('form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const message = document.getElementById('message').value;
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('form');
 
-      const res = await fetch('/api/send', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message })
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault(); // ← これが無いとmethod=GETになります
+
+        const message = document.getElementById('message').value;
+
+        const res = await fetch('/api/send', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message }),
+        });
+
+        if (res.ok) {
+          alert('送信成功！');
+        } else {
+          alert('送信失敗…');
+        }
       });
-
-      if (res.ok) {
-        alert('送信されました！');
-      } else {
-        alert('送信失敗...');
-      }
     });
   </script>
 </body>
