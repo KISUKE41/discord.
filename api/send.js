@@ -4,14 +4,18 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { message, userId } = req.body;
+    const { userId, message } = req.body;
 
-    const webhookUrl = 'https://discord.com/api/webhooks/1428992499401232415/Y5ob_1IjzvJwNB4ssOCHJ3vlG7ZSUb8BvApaFDETlLlD0GN1dRo25-7uO_wV1FGOpgAf';
+    if (!userId || !message) {
+      return res.status(400).json({ error: 'userId and message are required' });
+    }
+
+    const webhookUrl = 'https://discord.com/api/webhooks/あなたのWebhookURL';
 
     const payload = {
-      content: `<@${userId}> ${message}`, 
+      content: `<@${userId}> ${message}`,
       allowed_mentions: {
-        users: [userId]
+        users: [userId] // 🔥 これがないとメンションされない
       }
     };
 
